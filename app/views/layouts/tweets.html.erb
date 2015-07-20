@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+  <title>All the Popular Tweets</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta name="MobileOptimized" content="320">
+  <meta name="description" content="" />
+  <meta http-equiv="keywords" content="">
+  <!-- BEGIN - Open Graph Tags -->
+  <meta property="og:title" data-page-subject="true" content="All the Popular Tweets">
+  <meta property="og:url" data-page-subject="true" content="http://internetoftweets.com">
+  <meta property="og:description" data-page-subject="true" content="">
+  <meta property="og:image" data-page-subject="true" content="">
+  <meta property="og:type" data-page-subject="true" content="website">
+  <meta property="og:site_name" data-page-subject="true" content="InternetOfTweets.com">
+  <!-- END - Open Graph Tags -->
+  <%= stylesheet_link_tag "m.tweets", :media => "all" %>
+  <%= stylesheet_link_tag "font-awesome.min", :media => "all" %>
+
+  <%= yield :page_stylesheet_file %>
+  <%= stylesheet_link_tag "tweets", :media => "all" %>
+  <%= stylesheet_link_tag "iosOverlay" %>
+
+  <%= csrf_meta_tags %>
+  <%= yield :page_css_code %>
+
+</head>
+<!--<body class="page-header-fixed page-full-width">
+-->
+<body class="page-header-fixed">
+
+<%= render :partial => 'tweetheader' %>
+<div class="clearfix"></div>
+<div class="page-container">
+  <%= render :partial => 'tweet_sidebar_filter' %>
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <%= yield %>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  2013 &copy; Powered by <a href="http://netcurate.com">Netcurate.com</a>
+  <div class="span pull-right">
+    <span class="go-top"><i class="fa fa-angle-up"></i></span>
+  </div>
+</div>
+<%= javascript_include_tag "m.tweet" %>
+<%= javascript_include_tag "tweetfilter" %>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<%= yield :page_javascript_file %>
+<script>
+    jQuery(document).ready(function() {
+        // initiate layout and plugins
+        App.init();
+        FormComponents.init();
+    });
+
+</script>
+<%= yield :page_javascript_code %>
+</body>
+</html>
+
+

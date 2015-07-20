@@ -1,0 +1,19 @@
+<%if @tweets.present? %>
+    <div class="row" id="div_live_stories" style="margin-left: 15px;">
+      <div class="col-md-12 news-page">
+        <div class="space20"></div>
+        <div class="row" id="bindingdiv">
+          <div class="col-md-4 card-holder-singlecol" id="allstories1">
+            <%= render :partial => "index",:locals =>{:tweets =>@tweets,:gi=>0} %>
+          </div>
+          <div class="col-md-4 card-holder-singlecol" id="allstories2">
+            <%= render :partial => "index",:locals =>{:tweets =>@tweets,:gi=>1} %>
+          </div>
+          <div class="col-md-4 card-holder-singlecol" id="allstories3">
+            <%= render :partial => "index",:locals =>{:tweets =>@tweets,:gi=>2} %>
+          </div>
+        </div>
+        <div class="space20"></div>
+      </div>
+    </div>
+<%end%>

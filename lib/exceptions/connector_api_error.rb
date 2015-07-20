@@ -1,0 +1,3 @@
+class ConnectorApiError < StandardError
+
+end

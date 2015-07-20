@@ -1,0 +1,101 @@
+<div class="page-sidebar-wrapper">
+  <div class="page-sidebar navbar-collapse collapse">
+    <ul class="page-sidebar-menu">
+      <li class="sidebar-search-wrapper">
+        <div class="form-container">
+          <h4 style="color:#3b5998;">
+            Filter By
+          </h4>
+        </div>
+      </li>
+      <li>
+        <div>
+          <i class="fa fa-asterisk"></i>
+                <span class="title">
+                    Category
+                </span>
+                <span class="selected">
+                </span>
+        </div>
+        <ul class="ulfilters" data-filter-category="category">
+          <li>
+            <%= select_tag 'category_filter'%>
+          </li>
+        </ul>
+      </li>
+      <li class="">
+        <div>
+          <i class="fa fa-retweet"></i>
+                <span class="title">
+                    Tweet Type
+                </span>
+                <span class="selected">
+                </span>
+        </div>
+        <ul class="ulfilters" data-filter-category="tweettype">
+          <li>
+            <input class="filterbox" type="checkbox" checked value="tweet"><label>Tweet</label>
+          </li>
+          <li>
+            <input class="filterbox" type="checkbox" checked value="retweet"><label>Retweet</label>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <div>
+          <i class="fa fa-picture-o"></i>
+                <span class="title">
+                    Media
+                </span>
+        </div>
+        <ul class="ulfilters" data-filter-category="media">
+          <li>
+            <input class="filterbox" type="checkbox" value="link"><label>Has Link</label>
+          </li>
+          <li>
+            <input class="filterbox" type="checkbox" value="image"><label>Has Image</label>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <div>
+          <i class="fa fa-calendar"></i>
+                <span class="title">
+                    Timeline
+                </span>
+                <span class="selected">
+                </span>
+        </div>
+        <ul class="ulfilters" data-filter-category="timeline">
+          <li>
+            <%= select_tag 'timeline_filter', options_for_select([['This Month','m'],['This Week','w'],['Today','t']])
+            %>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <div>
+          <i class="fa fa-filter"></i>
+                <span class="title">
+                    Tweet Intent
+                </span>
+        </div>
+        <ul class="ulfilters" data-filter-category="intent">
+          <li>
+            <input class="filterbox" type="checkbox" value="reply"><label>Is Reply?</label>
+          </li>
+          <li>
+            <input class="filterbox" type="checkbox" value="mentioned"><label>Other user mentioned?</label>
+          </li>
+          <li>
+            <input class="filterbox" type="checkbox" value="hashtag"><label>Has hashtags?</label>
+          </li>
+          <li>
+            <input class="filterbox" type="checkbox" value="sensitive"><label>Is Sensitive?</label>
+          </li>
+        </ul>
+      </li>
+
+    </ul>
+  </div>
+</div>

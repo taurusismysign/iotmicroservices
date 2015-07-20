@@ -1,0 +1,68 @@
+.header {
+    background-color: #8b9dc3  !important;
+}
+.page-sidebar {
+    background-color: #dfe3ee  !important;
+}
+
+.page-sidebar-wrapper {
+    background-color: #dfe3ee  !important;
+}
+
+body {
+    background-color: #dfe3ee !important;
+}
+
+.page-sidebar-menu > li > div {
+ display: block;
+ position: relative;
+ margin: 0;
+ border: 0px;
+ padding: 10px 15px;
+
+ font-size: 14px;
+ font-weight: 300;
+}
+
+.ulfilters{
+    list-style-type: none;
+}
+
+.modal-bordered
+{
+    border:2px solid #428bca;
+}
+
+.title-white
+{
+   color: #428bca !important;
+    font-size: 20px;
+
+}
+
+.logo
+{
+    margin-top: 5px;
+}
+
+.logo > a:hover{
+    text-decoration: dotted;
+    text-decoration-style: dotted;
+    text-decoration-color: #ffffff !important;
+}
+
+
+.btn.blue
+{
+    background-color: #3b5998;
+}
+
+span.title{
+    color:  #3b5998;
+}
+
+.ulfilters > li > label
+{
+    font-size: 12px;
+    margin-left: 5px;
+}

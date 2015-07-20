@@ -1,0 +1,125 @@
+var loading = false;
+var page_number = 1;
+var disconnected = false;
+
+var dis_connect = function(){
+    disconnected = true;
+}
+
+var scrollCallback = function (){
+
+    if(disconnected){
+        return;
+    }
+
+    var scrollTop = $(window).scrollTop();
+    var objBottom = $(document).height() - $(window).height() - 50;
+
+    if ((scrollTop > objBottom) && !loading) {
+        loading = true;
+        apply_filter('append');
+    }
+}
+
+jQuery(document).ready(function() {
+
+    jQuery(window).scroll(scrollCallback);
+
+    $('.filterbox').on('click', function(e){
+        apply_filter('clear');
+    });
+
+    $( "#category_filter" ).change(function(e) {
+        apply_filter('clear');
+    });
+
+    $( "#timeline_filter" ).change(function(e) {
+        apply_filter('clear');
+    });
+
+    load_categories();
+});
+
+
+load_categories = function(){
+
+    $.ajax({
+        //url: "http://localhost:3011/categories",
+        url: "http://iot-catalog.hcf.helion-dev.com/categories",
+        type: 'GET',
+        dataType: 'json',
+        //beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));},
+        success: function(response) {
+            populate_categories(response);
+        },
+        error: function(a,b,c){
+            console.log("unable to load categories");
+            console.log(a);
+        }
+    });
+    return false;
+
+}
+
+populate_categories = function(d){
+    $.each(d, function(el,ob) {
+        console.log(ob);
+        $('#category_filter')
+                .append($("<option></option>")
+                        .attr("value", ob.category_string)
+                        .text(ob.name));
+    });
+}
+
+function apply_filter(caller) {
+    // this means new filters are getting applied, and so
+    // pagination on scroll will take into effect again
+    disconnected = false;
+
+    if(caller === 'clear'){
+        page_number = 0;
+    }
+
+    var notification = iosOverlay({
+        text: "Loading .."
+    });
+
+    var h = new Object(); // or just {}
+
+    $(".ulfilters").each(function() {
+        var cat = $(this).attr("data-filter-category");
+        var vals = new Object();
+        var counter = 0;
+        $(this).find('input:checkbox').each(function(){
+
+            if (this.checked) {
+                vals[counter] = $(this).attr('value');
+                counter = counter + 1;
+            }
+        });
+        h[cat] = vals;
+    });
+
+    h['timeline'] = $('#timeline_filter').val();
+
+    var data = {remote: true, utf8: "✓", category: $('#category_filter').val(),
+        filter: h, page: page_number, mode: caller};
+
+    $.ajax({
+        url: '/tweets/filtertweet',
+        type: 'POST',
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));},
+        data: data,
+        success: function(response) {
+            twttr.widgets.load();
+            notification.hide();
+            loading = false;
+            page_number = page_number + 1;
+        },
+        error: function(){
+            notification.hide();
+            loading = false;
+        }
+    });
+    return false;
+}

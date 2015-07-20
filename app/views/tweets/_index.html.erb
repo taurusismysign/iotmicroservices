@@ -1,0 +1,9 @@
+<% tweets.in_groups_of(3).transpose.each_with_index do |group, groupindex|  %>
+    <%if groupindex == gi %>
+        <% group.each_with_index do |tweet,index |%>
+            <% if tweet.present? %>
+                <%= render :partial => 'tweet_tile', :locals =>{ :tweet => tweet} %>
+            <%end%>
+        <%end %>
+    <%end%>
+<%end%>

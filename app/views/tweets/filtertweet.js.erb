@@ -1,0 +1,15 @@
+<%(1..3).each do |sindex|%>
+<%if @mode == 'clear'%>
+    $('#allstories<%=sindex%>').html('');
+    $('#allstories<%=sindex%>').html('<%= j render :partial => "index",:locals =>{:tweets =>@tweets,:gi=>(sindex-1)} %>');
+<%end%>
+
+<%if @mode == 'append'%>
+    $('#allstories<%=sindex%>').append('<%= j render :partial => "index",:locals =>{:tweets =>@tweets,:gi=>(sindex-1)} %>');
+<%end%>
+
+<%end%>
+
+<%if @tweets.blank?%>
+    dis_connect();
+<%end%>
