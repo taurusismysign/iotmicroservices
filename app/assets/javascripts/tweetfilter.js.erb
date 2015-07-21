@@ -43,12 +43,12 @@ jQuery(document).ready(function() {
 
 load_categories = function(){
 
+    var u = "<%= ENV['CategoryLookupService'] %>";
+
     $.ajax({
-        //url: "http://localhost:3011/categories",
-        url: "http://iot-catalog.hcf.helion-dev.com/categories",
+        url: u,
         type: 'GET',
         dataType: 'json',
-        //beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));},
         success: function(response) {
             populate_categories(response);
         },

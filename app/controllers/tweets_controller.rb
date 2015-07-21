@@ -2,15 +2,13 @@ class TweetsController < ApplicationController
   allow_cors :index, :filtertweet
 
   def index
-=begin
+
     if params[:id].present?
       @cat = params[:id]
     else
       @cat = 'sports'
     end
     @tweets = Tweet.findtweets(@cat,nil,0)
-=end
-    SyncData.process
 
   end
 
@@ -22,8 +20,8 @@ class TweetsController < ApplicationController
 
   def filtertweet
     if params[:category].present?
-      respond_with Tweet.findtweets(params[:category], params[:filter], params[:page])
-      #@mode = params[:mode]
+      @tweets = Tweet.findtweets(params[:category], params[:filter], params[:page])
+      @mode = params[:mode]
     end
   end
 

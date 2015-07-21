@@ -59,7 +59,7 @@ class TwitterSync
         since_id = @si.since_value
       end
 
-      @timeline = @connector.timeline("internetoftweet", since_id, true)
+      @timeline = @connector.timeline(ENV['TwitterHandleToRead'], since_id, true)
 
       expertshash = JSON.parse(experts)
 
