@@ -20,7 +20,7 @@ class SyncData
 
     #connect to the "catalog" service and get all the experts
 
-    response = HTTParty.get("http://localhost:3012/experts.json", {timeout: 15})
+    response = HTTParty.get(ENV['ExpertLookupService'], {timeout: 15})
     t = TwitterSync.new
     t.SyncTweets(response.body)
   end

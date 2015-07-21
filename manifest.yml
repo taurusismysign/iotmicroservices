@@ -6,6 +6,8 @@ applications:
   command: bundle exec rails s -p $PORT
   services:
     ${name}-db: mysql
+  env:
+    CategoryLookupService: "http://iot-catalog.hcf.helion-dev.com/categories"
   stackato:
     hooks:
       pre-running:
@@ -15,7 +17,6 @@ applications:
       # run database migration after the DATABASE_URL has been changed
       # to use the mysql2:// scheme
       - rake db:migrate
-
 - name: iot-catalog
   memory: 512M
   instances: 1
@@ -34,6 +35,14 @@ applications:
   command: 'bundle exec clockwork scripts/tweet_sync.rb'
   services:
     ${name}-db: mysql
+  env:
+    NewTweetService: "http://iot-tweet.hcf.helion-dev.com/tweets.json"
+    ExpertLookupService: "http://iot-catalog.hcf.helion-dev.com/experts.json"
+    TwitterHandleToRead: "internetoftweet"
+    ConsumerKey: "nZ38qeNIoHWrhScFBcFAWYiip"
+    ConsumerSecret: "0IDud2yTAWBXVe4vGeQhFYmV8WtbsK9kW7F5QixEYQqXTKQUBK"
+    AppId: "2475756498-Qfbb6lKEFL2jjotVfpwYnkp9fIngiD7jbRrP5oe"
+    AppSecret: "girHQP3wRa6ifHeJ4IlWwWVhGYbr29hQzSsqEqREwIAph"
   stackato:
       hooks:
         pre-running:

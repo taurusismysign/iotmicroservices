@@ -10,6 +10,8 @@ class TweetsController < ApplicationController
     end
     @tweets = Tweet.findtweets(@cat,nil,0)
 
+    #SyncData.process
+
   end
 
   def create
